@@ -1,9 +1,8 @@
-import './Card.css';
-
+import classes from './Card.module.css';
+ 
 function Card(props) {
-    //const classes = 'card ' + props.className
-    const classes  = `card ${props.className}`
-    return <div className={classes} >{props.children}</div>
+    // 'props.children' would give the HTML content passed to React Component.
+    return <div className={`${classes.card} ${props.className}`}>{props.children}</div>
 }
 
 export default  Card;

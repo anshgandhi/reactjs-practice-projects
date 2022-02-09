@@ -1,11 +1,22 @@
-import FictionalUserItem from "../FictionalUserItem/FictionalUserItem";
+import Card from "../../UI/Card/Card";
+import classes from "./FictionalUserList.module.css";
 
 const FictionalUserList = (props) => {
-    return <ul>
+  const deleteUser = (userId) => (event) => {
+    props.deleteUserHandler(userId);
+  };
+
+  return (
+    <Card className={classes.users}>
+      <ul>
         {props.userList.map((user) => (
-            <FictionalUserItem key={user.key} dataPoint={user}></FictionalUserItem>
+          <li key={user.key} onClick={(event) => deleteUser(user.key)(event)}>
+            {user.name}, age: {user.age}
+          </li>
         ))}
-    </ul>
-}
+      </ul>
+    </Card>
+  );
+};
 
 export default FictionalUserList;

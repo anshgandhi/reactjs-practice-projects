@@ -15,10 +15,22 @@ function App() {
     })
   }
 
+  const deleteUser = userId => {
+    let data_updated = []
+    for (let user of data) {
+      if (user.key !== ''+userId) {
+        data_updated = data_updated.concat(user)
+      }
+    }
+    setData(prevState => {
+      return data_updated
+    })
+  }
+
   return (
     <div>
       <FictionalUserInput addUserHandler={addUser}></FictionalUserInput>
-      <FictionalUserList userList={data}></FictionalUserList>
+      <FictionalUserList userList={data} deleteUserHandler={deleteUser}></FictionalUserList>
     </div>
   );
 }
