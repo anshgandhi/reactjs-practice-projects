@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { Fragment, useState } from "react";
 import Card from "../../UI/Card/Card";
 import Button from "../../UI/Button/Button";
 import classes from "./FictionalUserInput.module.css";
@@ -40,7 +40,7 @@ const FictionalUserInput = (props) => {
   }
 
   return (
-    <div>
+    <Fragment>
       {isError && (
         <ErrorModal
           title="An Error occured!"
@@ -59,7 +59,7 @@ const FictionalUserInput = (props) => {
           <Button type="submit">Add Character</Button>
         </form>
       </Card>
-    </div>
+    </Fragment>
   );
 };
 
