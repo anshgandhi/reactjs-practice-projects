@@ -1,10 +1,15 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useRef, useState } from "react";
 import Card from "../../UI/Card/Card";
 import Button from "../../UI/Button/Button";
 import classes from "./FictionalUserInput.module.css";
 import ErrorModal from "../../UI/ErrorModal/ErrorModal";
 
 const FictionalUserInput = (props) => {
+
+  // The ref would always have 'current' in props
+  const nameInputRef = useRef();
+  const ageInputRef = useRef();
+
   const [isError, setIsError] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
 
@@ -15,6 +20,8 @@ const FictionalUserInput = (props) => {
       age: event.target.age.value,
       key: Math.random().toString(),
     };
+    // gets access to actual DOM element.
+    console.log(nameInputRef.current.value);
     if (
       event.target.age.value.trim().length === 0 ||
       event.target.name.value.trim().length === 0
@@ -52,9 +59,9 @@ const FictionalUserInput = (props) => {
       <Card className={classes.input}>
         <form onSubmit={formSubmitHandler}>
           <label>User Name</label>
-          <input type="text" name="name" />
+          <input type="text" name="name" ref={nameInputRef}/>
           <label>Age</label>
-          <input type="number" name="age" />
+          <input type="number" name="age" ref={ageInputRef}/>
           {/* <button type="submit" >Add Character</button> */}
           <Button type="submit">Add Character</Button>
         </form>
